@@ -1,3 +1,5 @@
+var $ = window.jQuery;
+
 window.UTILS = window.UTILS || { };
 
 window.UTILS.extended_password_field = {
@@ -50,7 +52,7 @@ window.UTILS.extended_password_field = {
 			/*
 				Toggles password visibility
 			*/
-			togglePasswordReveal = function() {
+			var togglePasswordReveal = function() {
 
 				var revealButton = $( this );
 				var pwInput = revealButton.closest( ".password-input-container" ).
@@ -103,7 +105,7 @@ window.UTILS.extended_password_field = {
 			var progressBar = $( this ).parent().find( ".password_strength__progressbar" );
 
 			var $field = $( this ),
-					password = $field.val();
+					password = $field.val(),
 					lang = $( "html" ).attr( "lang" ),
 					url = "/api/" + lang + "/password_strength_analyzer/analyze/",
 					minimumScoreRequired = $field.
