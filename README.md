@@ -13,13 +13,46 @@ Just use the Composer:
     cd path/to/your/atk14/project/
     composer require atk14/extended-password-field
 
-    ln -s ../../vendor/atk14/extended-password-field/src/app/fields/extended_password_field.php app/fields/extended_password_field.php
-    ln -s ../../vendor/atk14/extended-password-field/src/app/widgets/extended_password_widget.php app/widgets/extended_password_widget.php
+    ln -s ../../vendor/atk14/extended-password-field/src/app/fields/extended_password_field.php app/fields/
+    ln -s ../../vendor/atk14/extended-password-field/src/app/widgets/extended_password_widget.php app/widgets/
+    ln -s ../../../vendor/atk14/extended-password-field/src/public/scripts/utils/extended_password_field.js public/scripts/utils/
+
+
+Link a proper style form either for  or Bootstrap 4 (scss) or Bootstrap 3 (less).
+
+    # Bootstrap 4
+    ln -s ../../../vendor/atk14/extended-password-field/src/public/styles/shared/_extended_password_field.scss public/styles/shared/
+
+    # or Bootstrap 3
+    ln -s ../../../vendor/atk14/extended-password-field/src/public/styles/shared/extended_password_field.less public/styles/shared/
+
+Include public/scripts/utils/extended_password_field.js in gulpfile.js into applicationScripts.
+
+    var applicationScripts = [
+      // ...
+      "public/scripts/utils/extended_password_field.js",
+      "public/scripts/application.js"
+    ];
 
 Usage in an ATK14 application
 -----------------------------
 
-TODO
+In a form:
+
+  
+    <?php
+    // file: app/forms/users/create_new_form.php
+    class CreateNewForm extends ApplicationForm {
+
+      function set_up(){
+        // ...
+        $this->add_field("password", new ExtendedPasswordField([
+          "minimum_password_strength_required" => 80, // %
+          "enable_password_reveal" => true, // default true
+          "show_password_strength_progressbar" => true, // default true
+        ]));
+      }
+    }
 
 Testing
 -------
