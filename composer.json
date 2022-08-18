@@ -1,0 +1,26 @@
+{
+        "name": "atk14/extended-password-field",
+        "type": "library",
+        "description": "ExtendedPasswordField is a password field with a password reveal function and a password strength progress bar",
+        "keywords": ["password", "field", "forms", "atk14"],
+        "homepage": "https://github.com/atk14/ExtendedPasswordField",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "ATK14 Development Team",
+                        "homepage": "https://github.com/orgs/atk14/people"
+                }
+        ],
+        "require": {
+                "php": ">=5.6.0",
+                "yarri/password-strength-analyzer": "^0.1"
+        },
+        "require-dev": {
+                "atk14/tester": "*",
+                "atk14/forms": "dev-master",
+                "atk14/core": "dev-master"
+        },
+        "autoload": {
+                "classmap": ["src/app/fields","src/app/widgets"]
+        }
+}
