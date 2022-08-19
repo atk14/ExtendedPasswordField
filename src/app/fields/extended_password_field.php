@@ -23,7 +23,7 @@ class ExtendedPasswordField extends PasswordField {
 		parent::__construct($options);
 
 		$this->update_messages(array(
-			"weak" => _("Síla tohoho hesla je %score%%, vyžadováno je však minimálně %minimum_password_strength_required%%. Zvyšte složitost hesla."),
+			"weak" => _("The strength of this password is %score%%, but the minimum required value is %minimum_password_strength_required%%. Increase the password complexity."),
 		));
 	}
 
