@@ -37,7 +37,7 @@ class ExtendedPasswordInput extends PasswordInput {
 		$strength = $analyzer->analyze($password);
 		$progressbar_class = $strength < $this->minimum_score_required ? "progress-bar-danger" : "progress-bar-success";
 
-		if( $USING_BOOTSTRAP4 ){
+		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
 			<span class="password-reveal-button" title="'.h(_("Show password")).'">
 				<span class="password-reveal-button__hidden">
