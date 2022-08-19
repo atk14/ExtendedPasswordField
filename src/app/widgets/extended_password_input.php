@@ -38,12 +38,12 @@ class ExtendedPasswordInput extends PasswordInput {
 		$strength = $analyzer->analyze($password);
 		$minimum_password_strength_required = $this->minimum_password_strength_required ? $this->minimum_password_strength_required : 100;
 
-		$progressbar_class = "progress-bar-danger";
+		$progressbar_class = "progress-bar-danger bg-danger";
 		if($strength>=$minimum_password_strength_required * 0.75){
-			$progressbar_class = "progress-bar-warning";
+			$progressbar_class = "progress-bar-warning bg-warning";
 		}
 		if($strength>=$minimum_password_strength_required){
-			$progressbar_class = "progress-bar-success";
+			$progressbar_class = "progress-bar-success bg-success";
 		}
 
 		if(USING_BOOTSTRAP4){
