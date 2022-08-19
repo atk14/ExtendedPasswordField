@@ -1,14 +1,14 @@
 <?php
 class ExtendedPasswordInput extends PasswordInput {
 
-	protected $minimum_score_required = null;
+	protected $minimum_password_strength_required = null;
 	protected $enable_password_reveal;
 	protected $show_password_strength_progressbar;
 	protected $current_score = 0;
 
 	function __construct($options = []){
 		$options += [
-			"minimum_score_required" => null,
+			"minimum_password_strength_required" => null,
 			"enable_password_reveal" => true,
 			"show_password_strength_progressbar" => true,
 			"attrs" => [],
@@ -18,12 +18,12 @@ class ExtendedPasswordInput extends PasswordInput {
 			"class" => "form-control",
 		];
 
-		$this->minimum_score_required = $options["minimum_score_required"];
+		$this->minimum_password_strength_required = $options["minimum_password_strength_required"];
 		$this->enable_password_reveal = $options["enable_password_reveal"];
 		$this->show_password_strength_progressbar = $options["show_password_strength_progressbar"];
 
 		$options["attrs"]["data-extended_password_field"] = "1";
-		$options["attrs"]["data-minimum_score_required"] = $this->minimum_score_required;
+		$options["attrs"]["data-minimum_password_strength_required"] = $this->minimum_password_strength_required;
 		if($this->enable_password_reveal){
 			$options["attrs"]["data-password_reveal"] = "1";
 		}
@@ -35,7 +35,7 @@ class ExtendedPasswordInput extends PasswordInput {
 		$password = trim((string)$value);
 		$analyzer = new Yarri\PasswordStrengthAnalyzer();
 		$strength = $analyzer->analyze($password);
-		$progressbar_class = $strength < $this->minimum_score_required ? "progress-bar-danger" : "progress-bar-success";
+		$progressbar_class = $strength < $this->minimum_password_strength_required ? "progress-bar-danger" : "progress-bar-success";
 
 		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
