@@ -49,4 +49,26 @@ class TcExtendedPasswordField extends TcBase {
 		$this->assertContains('data-minimum_password_strength_required="100"',$f3->as_widget());
 		$this->assertContains('data-minimum_password_strength_required="90"',$f4->as_widget());
 	}
+
+	function test_progressbar_colors(){
+		$form = new Atk14Form();
+
+		$form->add_field("password", new ExtendedPasswordField([
+			"show_password_strength_progressbar" => true,
+			"minimum_password_strength_required" => 80,
+		]));
+
+		$form->validate(["password" => "x"]); // 1%
+		$f = $form->get_field("password");
+		$this->assertContains('class="progress-bar progress-bar-danger"',$f->as_widget());
+
+		$form->validate(["password" => "xXske#@3459a!#D,c:!:dS~"]); // 100%
+		$f = $form->get_field("password");
+		$this->assertContains('class="progress-bar progress-bar-success"',$f->as_widget());
+
+		$form->validate(["password" => "jdjjSDdfje#,dsA"]); // 61%
+		$f = $form->get_field("password");
+		$this->assertContains('class="progress-bar progress-bar-warning"',$f->as_widget());
+
+	}
 }
