@@ -129,9 +129,9 @@ window.UTILS.extended_password_field = {
 					progressBarIndicator.removeClass( "progress-bar-danger bg-danger" );
 					progressBarIndicator.removeClass( "progress-bar-warning bg-warning" );
 					progressBarIndicator.removeClass( "progress-bar-success bg-success" );
-					if ( data.score < minimumScoreRequired ) {
+					if ( data.score < minimumScoreRequired * 0.75 ) {
 						progressBarIndicator.addClass( "progress-bar-danger bg-danger" );
-					} else if ( data.score < 100 ) {
+					} else if ( data.score < minimumScoreRequired ) {
 						progressBarIndicator.addClass( "progress-bar-warning bg-warning" );
 					} else {
 						progressBarIndicator.addClass( "progress-bar-success bg-success" );
