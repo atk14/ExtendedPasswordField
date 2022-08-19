@@ -39,10 +39,10 @@ class ExtendedPasswordInput extends PasswordInput {
 		$minimum_password_strength_required = $this->minimum_password_strength_required ? $this->minimum_password_strength_required : 100;
 
 		$progressbar_class = "progress-bar-danger";
-		if($strength>=$strength * 0.75){
+		if($strength>=$minimum_password_strength_required * 0.75){
 			$progressbar_class = "progress-bar-warning";
 		}
-		if($strength>=$strength){
+		if($strength>=$minimum_password_strength_required){
 			$progressbar_class = "progress-bar-success";
 		}
 
