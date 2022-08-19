@@ -46,7 +46,7 @@ class TcExtendedPasswordField extends TcBase {
 		$f3 = $form->get_field("password3");
 		$f4 = $form->get_field("password4");
 
-		$this->assertContains('data-minimum_password_strength_required=""',$f3->as_widget());
+		$this->assertContains('data-minimum_password_strength_required="100"',$f3->as_widget());
 		$this->assertContains('data-minimum_password_strength_required="90"',$f4->as_widget());
 	}
 }
