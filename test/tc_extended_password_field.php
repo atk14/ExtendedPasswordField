@@ -32,5 +32,21 @@ class TcExtendedPasswordField extends TcBase {
 
 		$this->assertContains('div class="progress-bar',$f1->as_widget());
 		$this->assertNotContains('div class="progress-bar',$f2->as_widget());
+
+		// --
+
+		$form->add_field("password3", new ExtendedPasswordField([
+			"minimum_password_strength_required" => null,
+		]));
+
+		$form->add_field("password4", new ExtendedPasswordField([
+			"minimum_password_strength_required" => 90,
+		]));
+
+		$f3 = $form->get_field("password3");
+		$f4 = $form->get_field("password4");
+
+		$this->assertContains('data-minimum_password_strength_required=""',$f3->as_widget());
+		$this->assertContains('data-minimum_password_strength_required="90"',$f4->as_widget());
 	}
 }
