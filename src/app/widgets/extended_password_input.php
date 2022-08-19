@@ -23,7 +23,7 @@ class ExtendedPasswordInput extends PasswordInput {
 		$this->show_password_strength_progressbar = $options["show_password_strength_progressbar"];
 
 		$options["attrs"]["data-extended_password_field"] = "1";
-		$options["attrs"]["data-minimum_password_strength_required"] = $this->minimum_password_strength_required;
+		$options["attrs"]["data-minimum_password_strength_required"] = $this->minimum_password_strength_required ? $this->minimum_password_strength_required : "100";
 		if($this->enable_password_reveal){
 			$options["attrs"]["data-password_reveal"] = "1";
 		}
