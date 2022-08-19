@@ -33,9 +33,18 @@ class ExtendedPasswordInput extends PasswordInput {
 
 	function render($name, $value, $options = []){
 		$password = trim((string)$value);
+
 		$analyzer = new Yarri\PasswordStrengthAnalyzer();
 		$strength = $analyzer->analyze($password);
-		$progressbar_class = $strength < $this->minimum_password_strength_required ? "progress-bar-danger" : "progress-bar-success";
+		$minimum_password_strength_required = $this->minimum_password_strength_required ? $this->minimum_password_strength_required : 100;
+
+		$progressbar_class = "progress-bar-danger";
+		if($strength>=$strength * 0.75){
+			$progressbar_class = "progress-bar-warning";
+		}
+		if($strength>=$strength){
+			$progressbar_class = "progress-bar-success";
+		}
 
 		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
@@ -58,8 +67,6 @@ class ExtendedPasswordInput extends PasswordInput {
 				</span>
 			</span>' : '';
 		}
-
-		
 
 		$progressbar = $this->show_password_strength_progressbar ? '
 				<div class="form-group form-group--password_strength">
