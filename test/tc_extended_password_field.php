@@ -15,4 +15,22 @@ class TcExtendedPasswordField extends TcBase {
 		$err = $this->assertInvalid("  ");
 		$this->assertEquals("This field is required.",$err);
 	}
+
+	function test_widget(){
+		$form = new Atk14Form();
+
+		$form->add_field("password1", new ExtendedPasswordField([
+			"show_password_strength_progressbar" => true,
+		]));
+
+		$form->add_field("password2", new ExtendedPasswordField([
+			"show_password_strength_progressbar" => false,
+		]));
+
+		$f1 = $form->get_field("password1");
+		$f2 = $form->get_field("password2");
+
+		$this->assertContains('div class="progress-bar',$f1->as_widget());
+		$this->assertNotContains('div class="progress-bar',$f2->as_widget());
+	}
 }
