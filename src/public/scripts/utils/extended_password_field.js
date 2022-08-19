@@ -126,15 +126,15 @@ window.UTILS.extended_password_field = {
 					progressBarIndicator.css( "width", data.score + "%" );
 					progressBarIndicator.attr( "aria-valuenow", data.score + "%" );
 					progressBarIndicator.text( data.score + "%" );
-					progressBarIndicator.removeClass( "progress-bar-danger" );
-					progressBarIndicator.removeClass( "progress-bar-warning" );
-					progressBarIndicator.removeClass( "progress-bar-success" );
+					progressBarIndicator.removeClass( "progress-bar-danger bg-danger" );
+					progressBarIndicator.removeClass( "progress-bar-warning bg-warning" );
+					progressBarIndicator.removeClass( "progress-bar-success bg-success" );
 					if ( data.score < minimumScoreRequired ) {
-						progressBarIndicator.addClass( "progress-bar-danger" );
+						progressBarIndicator.addClass( "progress-bar-danger bg-danger" );
 					} else if ( data.score < 100 ) {
-						progressBarIndicator.addClass( "progress-bar-warning" );
+						progressBarIndicator.addClass( "progress-bar-warning bg-warning" );
 					} else {
-						progressBarIndicator.addClass( "progress-bar-success" );
+						progressBarIndicator.addClass( "progress-bar-success bg-success" );
 					}
 				},
 				dataType: "json"
