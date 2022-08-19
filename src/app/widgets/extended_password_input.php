@@ -35,7 +35,7 @@ class ExtendedPasswordInput extends PasswordInput {
 		$password = trim((string)$value);
 		$analyzer = new Yarri\PasswordStrengthAnalyzer();
 		$strength = $analyzer->analyze($password);
-		$progressbar_class = $strength < $this->minimum_password_strength_required ? "progress-bar-danger bg-danger" : "progress-bar-success";
+		$progressbar_class = $strength < $this->minimum_password_strength_required ? "progress-bar-danger bg-danger" : "progress-bar-success bg-success";
 
 		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
