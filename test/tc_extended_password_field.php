@@ -30,8 +30,8 @@ class TcExtendedPasswordField extends TcBase {
 		$f1 = $form->get_field("password1");
 		$f2 = $form->get_field("password2");
 
-		$this->assertContains('div class="progress-bar',$f1->as_widget());
-		$this->assertNotContains('div class="progress-bar',$f2->as_widget());
+		$this->assertStringContains('div class="progress-bar',$f1->as_widget());
+		$this->assertStringNotContains('div class="progress-bar',$f2->as_widget());
 
 		// --
 
@@ -46,8 +46,8 @@ class TcExtendedPasswordField extends TcBase {
 		$f3 = $form->get_field("password3");
 		$f4 = $form->get_field("password4");
 
-		$this->assertContains('data-minimum_password_strength_required="100"',$f3->as_widget());
-		$this->assertContains('data-minimum_password_strength_required="90"',$f4->as_widget());
+		$this->assertStringContains('data-minimum_password_strength_required="100"',$f3->as_widget());
+		$this->assertStringContains('data-minimum_password_strength_required="90"',$f4->as_widget());
 	}
 
 	function test_progressbar_colors(){
@@ -60,15 +60,15 @@ class TcExtendedPasswordField extends TcBase {
 
 		$form->validate(["password" => "x"]); // 1%
 		$f = $form->get_field("password");
-		$this->assertContains('class="progress-bar progress-bar-danger bg-danger"',$f->as_widget());
+		$this->assertStringContains('class="progress-bar progress-bar-danger bg-danger"',$f->as_widget());
 
 		$form->validate(["password" => "xXske#@3459a!#D,c:!:dS~"]); // 100%
 		$f = $form->get_field("password");
-		$this->assertContains('class="progress-bar progress-bar-success bg-success"',$f->as_widget());
+		$this->assertStringContains('class="progress-bar progress-bar-success bg-success"',$f->as_widget());
 
 		$form->validate(["password" => "jdjjSDdfje#,dsA"]); // 61%
 		$f = $form->get_field("password");
-		$this->assertContains('class="progress-bar progress-bar-warning bg-warning"',$f->as_widget());
+		$this->assertStringContains('class="progress-bar progress-bar-warning bg-warning"',$f->as_widget());
 
 	}
 }
