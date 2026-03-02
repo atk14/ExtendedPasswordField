@@ -46,27 +46,43 @@ class ExtendedPasswordInput extends PasswordInput {
 			$progressbar_class = "progress-bar-success bg-success";
 		}
 
+		if(defined("USING_IONICONS") && constant("USING_IONICONS")){
+			$icon_eye_open = '<i class="ion ion-md-eye"></i>';
+			$icon_eye_close = '<i class="ion ion-md-eye-off"></i>';
+		}elseif(USING_BOOTSTRAP3 && !USING_FONTAWESOME){
+			$icon_eye_open = '<span class="glyphicon glyphicon-eye-open"></span>';
+			$icon_eye_close = '<span class="glyphicon glyphicon-eye-close"></span>';
+		}else{
+			$icon_eye_open = '<i class="fa-solid fa-eye"></i>';
+			$icon_eye_close = '<i class="fa-solid fa-eye-slash"></i>';
+		}
+
 		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
 			<span class="password-reveal-button" title="'.h(_("Show password")).'">
 				<span class="password-reveal-button__hidden">
-					<i class="fa-solid fa-eye"></i>
+					%icon_eye_open%
 				</span>
 				<span class="password-reveal-button__visible">
-					<i class="fa-solid fa-eye-slash"></i>
+					%icon_eye_close%
 				</span>
 			</span>' : '';
 		} else {
 			$show_password_icon = $this->enable_password_reveal ? '
 			<span class="password-reveal-button" title="'.h(_("Show password")).'">
 				<span class="password-reveal-button__hidden">
-					<span class="glyphicon glyphicon-eye-open"></span>
+					%icon_eye_open%
 				</span>
 				<span class="password-reveal-button__visible">
-					<span class="glyphicon glyphicon-eye-close"></span>
+					%icon_eye_close%
 				</span>
 			</span>' : '';
 		}
+
+		$show_password_icon = strtr($show_password_icon,[
+			"%icon_eye_open%" => $icon_eye_open,
+			"%icon_eye_close%" => $icon_eye_close,
+		]);
 
 		$progressbar = $this->show_password_strength_progressbar ? '
 				<div class="form-group form-group--password_strength">
