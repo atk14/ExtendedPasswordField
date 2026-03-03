@@ -90,7 +90,7 @@ window.UTILS.extended_password_field = {
 
 			} );
 
-			$( ".password-reveal-button" ).css( "display", "inline-block" );
+			$( ".password-reveal-button" ).css( "display", "flex" );
 
 			setPwRevealPositions();
 			$( window ).on( "resize", setPwRevealPositions );
