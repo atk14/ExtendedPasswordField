@@ -59,7 +59,7 @@ class ExtendedPasswordInput extends PasswordInput {
 
 		if(USING_BOOTSTRAP4){
 			$show_password_icon = $this->enable_password_reveal ? '
-			<span class="password-reveal-button" title="'.h(_("Show password")).'" style="position: absolute;">
+			<span class="password-reveal-button" title="'.h(_("Show password")).'" style="position: absolute; display: none;">
 				<span class="password-reveal-button__hidden">
 					%icon_eye_open%
 				</span>
@@ -69,7 +69,7 @@ class ExtendedPasswordInput extends PasswordInput {
 			</span>' : '';
 		} else {
 			$show_password_icon = $this->enable_password_reveal ? '
-			<span class="password-reveal-button" title="'.h(_("Show password")).'" style="position: absolute;">
+			<span class="password-reveal-button" title="'.h(_("Show password")).'" style="position: absolute; display: none;">
 				<span class="password-reveal-button__hidden">
 					%icon_eye_open%
 				</span>
